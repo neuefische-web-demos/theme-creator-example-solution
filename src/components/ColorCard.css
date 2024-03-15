@@ -1,0 +1,44 @@
+.color-card {
+  display: grid;
+  grid-template-columns: 175px 1fr;
+  min-height: 200px;
+  grid-template-areas: "info color";
+  background-color: #d7d7e5;
+  color: #222229;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.color-card__display {
+  grid-area: color;
+  position: relative;
+}
+
+.color-card__color-name {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.25rem;
+  background-color: #d7d7e5;
+  padding: 0.5rem;
+  border-bottom-left-radius: 8px;
+  opacity: 0.9;
+  color: black;
+}
+
+.color-card__info {
+  grid-area: info;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.color-card__role {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.color-card__hex {
+  color: #75757b;
+}
