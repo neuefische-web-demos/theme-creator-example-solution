@@ -5,9 +5,12 @@ import Theme from "./components/Theme";
 import ThemeForm from "./components/ThemeForm";
 import { themes as initialThemes } from "./lib/data";
 import { v4 as uuid } from "uuid";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [themes, setThemes] = useState(initialThemes);
+  const [themes, setThemes] = useLocalStorageState("themes", {
+    defaultValue: initialThemes,
+  });
 
   async function handleAddTheme(newTheme) {
     const colorNamePromises = newTheme.colors.map(async (color) => {
