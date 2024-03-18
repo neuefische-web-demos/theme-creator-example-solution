@@ -3,8 +3,9 @@ import ColorList from "./ColorList";
 import ThemePreview from "./ThemePreview";
 import { useState } from "react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import Button from "./Button";
 
-export default function Theme({ name, colors }) {
+export default function Theme({ name, colors, onDelete }) {
   const [showDetails, setShowDetails] = useState(false);
   function toggleDetails() {
     setShowDetails(!showDetails);
@@ -21,7 +22,12 @@ export default function Theme({ name, colors }) {
         )}
       </button>
       {showDetails ? (
-        <ColorList colors={colors} />
+        <>
+          <Button variant="danger" onClick={onDelete}>
+            Delete
+          </Button>
+          <ColorList colors={colors} />
+        </>
       ) : (
         <ThemePreview colors={colors} />
       )}

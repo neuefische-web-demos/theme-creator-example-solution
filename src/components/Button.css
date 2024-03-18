@@ -1,0 +1,13 @@
+.button {
+  padding: 0.5rem;
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #d7d7e5;
+  cursor: pointer;
+}
+
+.button--danger {
+  background-color: #e84354;
+  color: #eaeaf9;
+}

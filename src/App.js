@@ -14,6 +14,12 @@ function App() {
     setThemes([newThemeWithId, ...themes]);
   }
 
+  function handleDeleteTheme(id) {
+    const updatedThemes = themes.filter((theme) => theme.id !== id);
+
+    setThemes(updatedThemes);
+  }
+
   return (
     <>
       <header className="header">
@@ -24,7 +30,11 @@ function App() {
         <ul className="theme-list">
           {themes.map((theme) => (
             <li key={theme.id}>
-              <Theme name={theme.name} colors={theme.colors} />
+              <Theme
+                name={theme.name}
+                colors={theme.colors}
+                onDelete={() => handleDeleteTheme(theme.id)}
+              />
             </li>
           ))}
         </ul>

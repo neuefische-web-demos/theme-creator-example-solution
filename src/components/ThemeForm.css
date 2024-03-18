@@ -33,12 +33,3 @@
   cursor: pointer;
   aspect-ratio: 1 / 1;
 }
-
-.theme-form__submit-button {
-  padding: 0.5rem;
-  font-size: 1.125rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #d7d7e5;
-  cursor: pointer;
-}

@@ -1,3 +1,4 @@
+import Button from "./Button";
 import "./ThemeForm.css";
 
 const INITIAL_THEME = {
@@ -66,9 +67,7 @@ export default function ThemeForm({ onSubmit }) {
           />
         ))}
       </fieldset>
-      <button className="theme-form__submit-button" type="submit">
-        Add Theme
-      </button>
+      <Button type="submit">Add Theme</Button>
     </form>
   );
 }
