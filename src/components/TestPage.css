@@ -1,0 +1,56 @@
+.test-page {
+  position: fixed;
+  inset: 0;
+  margin-inline: auto;
+  max-width: 650px;
+  overflow-y: scroll;
+  background-color: var(--surface);
+  padding: 2rem;
+  color: var(--surface-on);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.test-page__title {
+  color: var(--primary);
+  margin: 0;
+}
+
+.test-page__paragraph {
+  margin: 0;
+}
+
+.test-page__paragraph--highlight {
+  background-color: var(--secondary);
+  margin-inline: -2rem;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+.test-page__button-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.test-page__button {
+  border: 3px solid var(--primary);
+  background-color: var(--primary);
+  color: var(--surface);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+}
+
+.test-page__button--secondary {
+  border-color: var(--secondary);
+  background-color: var(--secondary);
+  color: var(--surface-on);
+}
+
+.test-page__button--outlined {
+  border-color: currentColor;
+  background-color: transparent;
+  color: var(--surface-on);
+}

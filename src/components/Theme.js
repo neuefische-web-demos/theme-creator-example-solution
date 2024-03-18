@@ -12,7 +12,7 @@ const DISPLAY_STATES = {
   edit: "EDIT",
 };
 
-export default function Theme({ theme, onDelete, onEdit }) {
+export default function Theme({ theme, onDelete, onEdit, onPickTheme }) {
   const [displayState, setDisplayState] = useState(DISPLAY_STATES.preview);
 
   return (
@@ -42,6 +42,7 @@ export default function Theme({ theme, onDelete, onEdit }) {
       {displayState === DISPLAY_STATES.detail && (
         <>
           <div className="theme__button-group">
+            <Button onClick={onPickTheme}>Test Theme</Button>
             <Button
               variant="outlined"
               onClick={() => setDisplayState(DISPLAY_STATES.edit)}

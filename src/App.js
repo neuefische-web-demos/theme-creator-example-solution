@@ -5,6 +5,7 @@ import ThemeForm from "./components/ThemeForm";
 import { themes as initialThemes } from "./lib/data";
 import { v4 as uuid } from "uuid";
 import useLocalStorageState from "use-local-storage-state";
+import TestPage from "./components/TestPage";
 
 async function getColorName(hexValue) {
   const cleanHexValue = hexValue.replace("#", "");
@@ -20,6 +21,9 @@ function App() {
   const [themes, setThemes] = useLocalStorageState("themes", {
     defaultValue: initialThemes,
   });
+
+  const [pickedThemeId, setPickedThemeId] = useState(null);
+  const pickedTheme = themes.find((theme) => theme.id === pickedThemeId);
 
   async function handleAddTheme(newTheme) {
     const colorNamePromises = newTheme.colors.map(async (color) => {
@@ -81,6 +85,7 @@ function App() {
       </header>
       <main className="main-container">
         <ThemeForm onSubmit={handleAddTheme} />
+
         <ul className="theme-list">
           {themes.map((theme) => (
             <li key={theme.id}>
@@ -90,10 +95,18 @@ function App() {
                 onEdit={(updatedTheme) =>
                   handleEditTheme(theme.id, updatedTheme)
                 }
+                onPickTheme={() => setPickedThemeId(theme.id)}
               />
             </li>
           ))}
         </ul>
+
+        {pickedThemeId !== null && (
+          <TestPage
+            theme={pickedTheme}
+            onClose={() => setPickedThemeId(null)}
+          />
+        )}
       </main>
     </>
   );
