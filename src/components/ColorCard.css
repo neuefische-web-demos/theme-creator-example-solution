@@ -37,8 +37,13 @@
 .color-card__role {
   font-size: 1.4rem;
   font-weight: bold;
+  margin-bottom: auto;
 }
 
 .color-card__hex {
   color: #75757b;
+}
+
+.color-card__name {
+  font-weight: bold;
 }

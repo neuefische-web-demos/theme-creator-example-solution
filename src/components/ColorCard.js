@@ -9,6 +9,7 @@ export default function ColorCard({ color }) {
       ></div>
       <div className="color-card__info">
         <span className="color-card__role">{color.role}</span>
+        <span className="color-card__name">{color.name}</span>
         <span className="color-card__hex">{color.value}</span>
       </div>
     </article>

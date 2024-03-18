@@ -9,8 +9,28 @@ import { v4 as uuid } from "uuid";
 function App() {
   const [themes, setThemes] = useState(initialThemes);
 
-  function handleAddTheme(newTheme) {
-    const newThemeWithId = { ...newTheme, id: uuid() };
+  async function handleAddTheme(newTheme) {
+    const colorNamePromises = newTheme.colors.map(async (color) => {
+      const cleanHexValue = color.value.replace("#", "");
+
+      const response = await fetch(
+        `https://www.thecolorapi.com/id?hex=${cleanHexValue}`
+      );
+      const data = await response.json();
+      return {
+        ...color,
+        name: data.name.value,
+      };
+    });
+
+    const colorsWhitNames = await Promise.all(colorNamePromises);
+
+    const newThemeWithId = {
+      id: uuid(),
+      name: newTheme.name,
+      colors: colorsWhitNames,
+    };
+
     setThemes([newThemeWithId, ...themes]);
   }
 
