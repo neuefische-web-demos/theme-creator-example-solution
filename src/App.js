@@ -42,6 +42,7 @@ function App() {
     setThemes([newThemeWithId, ...themes]);
   }
 
+<<<<<<< HEAD
   async function handleEditTheme(id, updatedTheme) {
     const colorNamePromises = updatedTheme.colors.map(async (color) => {
       const name = await getColorName(color.value);
@@ -69,6 +70,8 @@ function App() {
     );
   }
 
+=======
+>>>>>>> 7dc995e (add part 4)
   function handleDeleteTheme(id) {
     const updatedThemes = themes.filter((theme) => theme.id !== id);
 
@@ -86,11 +89,17 @@ function App() {
           {themes.map((theme) => (
             <li key={theme.id}>
               <Theme
+<<<<<<< HEAD
                 theme={theme}
                 onDelete={() => handleDeleteTheme(theme.id)}
                 onEdit={(updatedTheme) =>
                   handleEditTheme(theme.id, updatedTheme)
                 }
+=======
+                name={theme.name}
+                colors={theme.colors}
+                onDelete={() => handleDeleteTheme(theme.id)}
+>>>>>>> 7dc995e (add part 4)
               />
             </li>
           ))}
