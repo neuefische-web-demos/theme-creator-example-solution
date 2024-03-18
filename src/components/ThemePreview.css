@@ -1,0 +1,13 @@
+.theme-preview {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.theme-preview__color {
+  width: 100%;
+
+  aspect-ratio: 3 / 2;
+}
