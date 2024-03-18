@@ -1,13 +1,18 @@
 import "./ThemeForm.css";
 
-const INTIAL_THEME = {
-  primary: "#6200ee",
-  secondary: "#03dac6",
-  surface: "#ffffff",
-  "surface-on": "#000000",
+const INITIAL_THEME = {
+  name: "",
+  colors: [
+    { role: "primary", value: "#6200ee" },
+    { role: "secondary", value: "#03dac6" },
+    { role: "surface", value: "#ffffff" },
+    { role: "surface-on", value: "#000000" },
+  ],
 };
 
 export default function ThemeForm({ onSubmit }) {
+  const initialData = INITIAL_THEME;
+
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -38,41 +43,28 @@ export default function ThemeForm({ onSubmit }) {
 
     onSubmit(newTheme);
   }
+
   return (
     <form className="theme-form" onSubmit={handleSubmit}>
-      <h2 className="theme-form__title">Add a new Theme</h2>
+      <h2 className="theme-form__title">Add new Theme</h2>
       <input
         className="theme-form__name-input"
         type="text"
         placeholder="Theme Name"
         name="name"
+        defaultValue={initialData.name}
         required
       />
       <fieldset className="theme-form__color-inputs">
-        <input
-          className="theme-form__color-input"
-          type="color"
-          defaultValue={INTIAL_THEME.primary}
-          name="primary"
-        />
-        <input
-          className="theme-form__color-input"
-          type="color"
-          defaultValue={INTIAL_THEME.secondary}
-          name="secondary"
-        />
-        <input
-          className="theme-form__color-input"
-          type="color"
-          defaultValue={INTIAL_THEME.surface}
-          name="surface"
-        />
-        <input
-          className="theme-form__color-input"
-          type="color"
-          defaultValue={INTIAL_THEME["surface-on"]}
-          name="surface-on"
-        />
+        {initialData.colors.map((color) => (
+          <input
+            key={color.role}
+            className="theme-form__color-input"
+            type="color"
+            name={color.role}
+            defaultValue={color.value}
+          />
+        ))}
       </fieldset>
       <button className="theme-form__submit-button" type="submit">
         Add Theme
