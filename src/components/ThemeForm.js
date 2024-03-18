@@ -11,9 +11,11 @@ const INITIAL_THEME = {
   ],
 };
 
-export default function ThemeForm({ onSubmit }) {
-  const initialData = INITIAL_THEME;
-
+export default function ThemeForm({
+  onSubmit,
+  initialData = INITIAL_THEME,
+  isEditMode,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -47,7 +49,9 @@ export default function ThemeForm({ onSubmit }) {
 
   return (
     <form className="theme-form" onSubmit={handleSubmit}>
-      <h2 className="theme-form__title">Add new Theme</h2>
+      <h2 className="theme-form__title">
+        {isEditMode ? "Edit Theme" : "Add new Theme"}
+      </h2>
       <input
         className="theme-form__name-input"
         type="text"
@@ -67,7 +71,7 @@ export default function ThemeForm({ onSubmit }) {
           />
         ))}
       </fieldset>
-      <Button type="submit">Add Theme</Button>
+      <Button type="submit">{isEditMode ? "Update Theme" : "Add Theme"}</Button>
     </form>
   );
 }

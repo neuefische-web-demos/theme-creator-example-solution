@@ -7,6 +7,16 @@ import { themes as initialThemes } from "./lib/data";
 import { v4 as uuid } from "uuid";
 import useLocalStorageState from "use-local-storage-state";
 
+async function getColorName(hexValue) {
+  const cleanHexValue = hexValue.replace("#", "");
+
+  const response = await fetch(
+    `https://www.thecolorapi.com/id?hex=${cleanHexValue}`
+  );
+  const data = await response.json();
+  return data.name.value;
+}
+
 function App() {
   const [themes, setThemes] = useLocalStorageState("themes", {
     defaultValue: initialThemes,
@@ -14,15 +24,10 @@ function App() {
 
   async function handleAddTheme(newTheme) {
     const colorNamePromises = newTheme.colors.map(async (color) => {
-      const cleanHexValue = color.value.replace("#", "");
-
-      const response = await fetch(
-        `https://www.thecolorapi.com/id?hex=${cleanHexValue}`
-      );
-      const data = await response.json();
+      const name = await getColorName(color.value);
       return {
         ...color,
-        name: data.name.value,
+        name,
       };
     });
 
@@ -35,6 +40,33 @@ function App() {
     };
 
     setThemes([newThemeWithId, ...themes]);
+  }
+
+  async function handleEditTheme(id, updatedTheme) {
+    const colorNamePromises = updatedTheme.colors.map(async (color) => {
+      const name = await getColorName(color.value);
+
+      return {
+        ...color,
+        name,
+      };
+    });
+
+    const colorsWhitNames = await Promise.all(colorNamePromises);
+
+    setThemes(
+      themes.map((theme) => {
+        if (theme.id !== id) {
+          return theme;
+        }
+
+        return {
+          id,
+          name: updatedTheme.name,
+          colors: colorsWhitNames,
+        };
+      })
+    );
   }
 
   function handleDeleteTheme(id) {
@@ -54,9 +86,11 @@ function App() {
           {themes.map((theme) => (
             <li key={theme.id}>
               <Theme
-                name={theme.name}
-                colors={theme.colors}
+                theme={theme}
                 onDelete={() => handleDeleteTheme(theme.id)}
+                onEdit={(updatedTheme) =>
+                  handleEditTheme(theme.id, updatedTheme)
+                }
               />
             </li>
           ))}
