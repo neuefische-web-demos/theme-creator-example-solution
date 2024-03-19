@@ -22,14 +22,3 @@
   border: none;
   padding: 0;
 }
-
-.theme-form__color-input {
-  all: unset;
-  box-sizing: border-box;
-  background-clip: margin-box;
-  border: 2px solid currentColor;
-  border-radius: 8px;
-  width: 100%;
-  cursor: pointer;
-  aspect-ratio: 1 / 1;
-}
