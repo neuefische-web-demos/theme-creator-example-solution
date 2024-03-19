@@ -1,4 +1,5 @@
 import Button from "./Button";
+import ColorPicker from "./ColorPicker";
 import "./ThemeForm.css";
 
 const INITIAL_THEME = {
@@ -62,13 +63,7 @@ export default function ThemeForm({
       />
       <fieldset className="theme-form__color-inputs">
         {initialData.colors.map((color) => (
-          <input
-            key={color.role}
-            className="theme-form__color-input"
-            type="color"
-            name={color.role}
-            defaultValue={color.value}
-          />
+          <ColorPicker key={color.role} color={color} />
         ))}
       </fieldset>
       <Button type="submit">{isEditMode ? "Update Theme" : "Add Theme"}</Button>
