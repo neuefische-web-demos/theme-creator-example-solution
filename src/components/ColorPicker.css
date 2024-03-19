@@ -16,7 +16,7 @@
   all: unset;
   position: absolute;
   width: 110%;
-  inset: -2px;
+  inset: -5px;
   box-sizing: border-box;
   border-radius: 8px;
 
