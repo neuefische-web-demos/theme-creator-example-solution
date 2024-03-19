@@ -6,6 +6,7 @@ import { themes as initialThemes } from "./lib/data";
 import { v4 as uuid } from "uuid";
 import useLocalStorageState from "use-local-storage-state";
 import TestPage from "./components/TestPage";
+import { useState } from "react";
 
 async function getColorName(hexValue) {
   const cleanHexValue = hexValue.replace("#", "");
