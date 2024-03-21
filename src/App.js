@@ -27,23 +27,7 @@ function App() {
   const pickedTheme = themes.find((theme) => theme.id === pickedThemeId);
 
   async function handleAddTheme(newTheme) {
-    const colorNamePromises = newTheme.colors.map(async (color) => {
-      const name = await getColorName(color.value);
-      return {
-        ...color,
-        name,
-      };
-    });
-
-    const colorsWhitNames = await Promise.all(colorNamePromises);
-
-    const newThemeWithId = {
-      id: uuid(),
-      name: newTheme.name,
-      colors: colorsWhitNames,
-    };
-
-    setThemes([newThemeWithId, ...themes]);
+    setThemes([{ ...newTheme, id: uuid() }, ...themes]);
   }
 
   async function handleEditTheme(id, updatedTheme) {
