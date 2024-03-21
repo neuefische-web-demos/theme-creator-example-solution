@@ -7,6 +7,16 @@ import { themes as initialThemes } from "./lib/data";
 import { v4 as uuid } from "uuid";
 import useLocalStorageState from "use-local-storage-state";
 
+async function getColorName(hexValue) {
+  const cleanHexValue = hexValue.replace("#", "");
+
+  const response = await fetch(
+    `https://www.thecolorapi.com/id?hex=${cleanHexValue}`
+  );
+  const data = await response.json();
+  return data.name.value;
+}
+
 function App() {
   const [themes, setThemes] = useLocalStorageState("themes", {
     defaultValue: initialThemes,
@@ -14,15 +24,10 @@ function App() {
 
   async function handleAddTheme(newTheme) {
     const colorNamePromises = newTheme.colors.map(async (color) => {
-      const cleanHexValue = color.value.replace("#", "");
-
-      const response = await fetch(
-        `https://www.thecolorapi.com/id?hex=${cleanHexValue}`
-      );
-      const data = await response.json();
+      const name = await getColorName(color.value);
       return {
         ...color,
-        name: data.name.value,
+        name,
       };
     });
 
