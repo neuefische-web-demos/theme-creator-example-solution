@@ -53,6 +53,7 @@ export default function ThemeForm({
         {isEditMode ? "Edit Theme" : "Add new Theme"}
       </h2>
       <input
+        aria-label="theme title"
         className="theme-form__name-input"
         type="text"
         placeholder="Theme Name"
@@ -67,6 +68,7 @@ export default function ThemeForm({
             className="theme-form__color-input"
             type="color"
             name={color.role}
+            aria-label={color.role}
             defaultValue={color.value}
           />
         ))}
