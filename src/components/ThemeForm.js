@@ -58,6 +58,7 @@ export default function ThemeForm({
         type="text"
         placeholder="Theme Name"
         name="name"
+        aria-label="theme name"
         defaultValue={initialData.name}
         required
       />

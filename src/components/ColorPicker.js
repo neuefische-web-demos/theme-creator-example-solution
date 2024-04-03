@@ -17,6 +17,7 @@ export default function ColorPicker({ color }) {
           className="color-picker__color-input"
           type="color"
           name={color.role}
+          aria-label={color.role}
           value={value}
           onChange={handleColorChange}
         />
