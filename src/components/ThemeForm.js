@@ -48,6 +48,7 @@ export default function ThemeForm({ onSubmit }) {
     <form className="theme-form" onSubmit={handleSubmit}>
       <h2 className="theme-form__title">Add new Theme</h2>
       <input
+        aria-label="theme title"
         className="theme-form__name-input"
         type="text"
         placeholder="Theme Name"
@@ -62,6 +63,7 @@ export default function ThemeForm({ onSubmit }) {
             className="theme-form__color-input"
             type="color"
             name={color.role}
+            aria-label={color.role}
             defaultValue={color.value}
           />
         ))}
